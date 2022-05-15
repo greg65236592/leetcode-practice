@@ -5,9 +5,11 @@ import java.util.Arrays;
 /**
  * https://leetcode.com/problems/longest-palindromic-substring/
  *
+ * <pre>
  * Input: s = "babad"
  * Output: "bab"
  * Explanation: "aba" is also a valid answer.
+ * </pre>
  */
 public class LongestPalindrome {
 
