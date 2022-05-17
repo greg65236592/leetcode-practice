@@ -1,7 +1,5 @@
 package leetcode.practice;
 
-import java.util.HashMap;
-
 /**
  * https://leetcode.com/problems/zigzag-conversion/
  *
@@ -30,21 +28,15 @@ public class ZigzagConversion {
     }
     boolean isOrderUp = true;
     char[] arr = s.toCharArray();
-    var rowToSubStr = new HashMap<Integer, StringBuilder>();
+    var rowToSubStr = new StringBuilder[numRows];
+    for (int i = 0; i < numRows; i++) {
+      rowToSubStr[i] = new StringBuilder();
+    }
     int idx = 0;
     int rowToWrite = 0;
     while (idx < arr.length) {
       int finalIdx = idx;
-      rowToSubStr.compute(
-          rowToWrite,
-          (k, v) -> {
-            if (v == null) {
-              v = new StringBuilder().append(arr[finalIdx]);
-            } else {
-              v.append(arr[finalIdx]);
-            }
-            return v;
-          });
+      rowToSubStr[rowToWrite].append(arr[finalIdx]);
       idx++;
       if (idx == 1) { // first don't
         rowToWrite++;
@@ -59,12 +51,6 @@ public class ZigzagConversion {
         rowToWrite--;
       }
     }
-    StringBuilder result = new StringBuilder();
-    for (int i = 0; i < numRows; i++) {
-      if (rowToSubStr.get(i) != null) {
-        result.append(rowToSubStr.get(i));
-      }
-    }
-    return result.toString();
+    return String.join("", rowToSubStr);
   }
 }
